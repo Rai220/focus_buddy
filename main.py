@@ -16,7 +16,7 @@ class ScreenshotAnalysis(BaseModel):
     """Результат анализа скриншота."""
 
     thoughts: str = Field(..., description="Мысли по поводу скриншота")
-    moving_to_gool: bool = Field(
+    moving_to_goal: bool = Field(
         ...,
         description="Соответствует ли то что происходит на скриншоте движению к цели",
     )
@@ -66,7 +66,7 @@ def take_screenshot_every_15_seconds(goal):
 
             resp = struct_llm.invoke(messages)
             rprint(resp)
-            if not resp.moving_to_gool:
+            if not resp.moving_to_goal:
                 pyautogui.alert(
                     text=f"Ты хотел заняться {goal}! Please refocus!\n\n{resp.tips}",
                     title="Ты занимаешься не тем, чем надо!",
